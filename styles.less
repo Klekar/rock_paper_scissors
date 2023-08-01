@@ -76,66 +76,96 @@ html {
     background-position: center;
     position: relative;
 
-    .game-button {
-        .center;
-        display: inline-flex;
+    .game-button-container {
         width: 10em;
         height: 10em;
-        border-radius: 50%;
-        transition: box-shadow 0.4s ease-in-out, margin-top 0.4s ease-in-out;
-        position: absolute;;
+        position: absolute;
+        clip-path: url("#hole-cut");
+        background-image: radial-gradient(circle at 50% 53%, hsla(0, 0%, 0%, 0.5) 69%, #0000 66%);
 
-        &::before {
-            transition: box-shadow 0.2s ease-out;
-            height: inherit;
-            width: inherit;
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-        }
 
-        &:hover {
-            box-shadow: hsl(220, 48%, 16%) 0px -0.4em 0 0.05em !important;
-            margin-top: 0.4em;;
+        &#rock {
+            top: 10%;
+            left: 20%;
 
-            &::before {
-                transition: box-shadow 0.2s ease-in 0.2s;
-                box-shadow: #00000082 0em 0.6em 0.5em inset !important;
+            .game-button {
+                background: linear-gradient(hsl(349, 70%, 56%), hsl(349, 71%, 52%));
+                box-shadow: hsl(349, 66%, 40%) 0px 0.4em;
             }
         }
 
-        &#rock {
-            background: linear-gradient(hsl(349, 70%, 56%), hsl(349, 71%, 52%));
-            box-shadow: hsl(349, 66%, 40%) 0px 0.4em;
-            top: 10%;
-            left: 20%;
-        }
-
         &#paper {
-            background: linear-gradient(hsl(230, 89%, 65%), hsl(230, 89%, 62%));
-            box-shadow: hsl(230, 66%, 48%) 0px 0.4em;
             top: 10%;
             right: 20%;
+
+            .game-button {
+                background: linear-gradient(hsl(230, 89%, 65%), hsl(230, 89%, 62%));
+                box-shadow: hsl(230, 66%, 48%) 0px 0.4em;
+            }
         }
 
         &#scissors {
-            background: linear-gradient(hsl(40, 84%, 53%), hsl(39, 89%, 49%));
-            box-shadow: hsl(38, 100%, 38%) 0px 0.4em;
             top: 90%;
             left: 50%;
             transform: translate(-50%, -100%);
+
+            .game-button {
+                background: linear-gradient(hsl(40, 84%, 53%), hsl(39, 89%, 49%));
+                box-shadow: hsl(38, 100%, 38%) 0px 0.4em;
+            }
         }
 
-        .game-button-inner {
-            .center;
-            width: 76%;
-            height: 76%;
-            background-color: #fff;
-            border-radius: inherit;
-            box-shadow: #ddd 0 0.4em 0 0 inset;
 
-            img {
-                scale: 1.2;
+        .game-button {
+            .center;
+            display: inline-flex;
+            width: 10em;
+            height: 10em;
+            position: absolute;
+            border-radius: 50%;
+            transition: box-shadow 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+            cursor: pointer;
+            user-select: none;
+
+            &::before {
+                transition: box-shadow 0.2s ease-out;
+                height: inherit;
+                width: inherit;
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &:hover {
+                // box-shadow: hsl(220, 48%, 16%) 0px -0.4em 0 0.05em !important;
+                margin-top: 0.2em;
+
+                // &::before {
+                //     transition: box-shadow 0.2s ease-in 0.2s, margin-top 0.1s ease-in-out;
+                //     box-shadow: #00000052 0em -0.4em 0.3em inset !important;
+                // }
+            }
+
+            &:active {
+                margin-top: 0.6em;
+
+                &::before {
+                    transition: box-shadow 0.1s linear 0.1s;
+                    box-shadow: #00000082 0em -0.4em 0.5em inset !important;
+                }
+            }
+
+            .game-button-inner {
+                .center;
+                width: 76%;
+                height: 76%;
+                background-color: #fff;
+                border-radius: inherit;
+                box-shadow: #ddd 0 0.4em 0 0 inset;
+
+                img {
+                    scale: 1.2;
+                }
             }
         }
     }

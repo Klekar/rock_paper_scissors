@@ -29,6 +29,15 @@
 
 <body>
 
+  <svg width="0" height="0" preserveAspectRatio="none">
+    <defs>
+      <clipPath id="hole-cut" clipPathUnits="objectBoundingBox" transform="scale(0.01)">
+        <path id="hole-path" d="M 0 50 a 25 25 0 1 1 100 0 L 100 54 A 25 25 0 1 1 0 54" stroke="black"
+          stroke-width="10px" />
+      </clipPath>
+    </defs>
+  </svg>
+
   <div class="header-box">
     <h1>Rock Paper Scissors</h1>
     <div class="score-box">
@@ -42,19 +51,25 @@
   </div>
 
   <div class="game-buttons-box">
-    <div class="game-button" id="rock">
-      <div class="game-button-inner">
-        <img src="./images/icon-rock.svg" alt="rock-icon" />
+    <div class="game-button-container" id="rock">
+      <div class="game-button">
+        <div class="game-button-inner">
+          <img src="./images/icon-rock.svg" alt="rock-icon" />
+        </div>
       </div>
     </div>
-    <div class="game-button" id="paper">
-      <div class="game-button-inner">
-        <img src="./images/icon-paper.svg" alt="rock-icon" />
+    <div class="game-button-container" id="paper">
+      <div class="game-button">
+        <div class="game-button-inner">
+          <img src="./images/icon-paper.svg" alt="rock-icon" />
+        </div>
       </div>
     </div>
-    <div class="game-button" id="scissors">
-      <div class="game-button-inner">
-        <img src="./images/icon-scissors.svg" alt="rock-icon" />
+    <div class="game-button-container" id="scissors">
+      <div class="game-button">
+        <div class="game-button-inner">
+          <img src="./images/icon-scissors.svg" alt="rock-icon" />
+        </div>
       </div>
     </div>
   </div>

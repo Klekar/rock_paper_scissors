@@ -1,0 +1,8 @@
+
+<svg width="0" height="0" preserveAspectRatio="none">
+    <defs>
+        <clipPath id="hole-cut" clipPathUnits="objectBoundingBox" transform="scale(0.01)">
+            <path id="hole-path" d="M 0 50 a 25 25 0 1 1 100 0 L 100 54 A 25 25 0 1 1 0 54" stroke="black" stroke-width="10px" />
+        </clipPath>
+    </defs>
+</svg>
