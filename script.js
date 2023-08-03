@@ -16,7 +16,7 @@ let t
     })
 }
 
-{   //GAME LOGIC
+{   //GAME LOGIC + ANIMATIONS
     let score = 0
     const itemArray = [
         "rock",
@@ -39,23 +39,40 @@ let t
 
     function getResultText(result) {
         return result === 1 ? "YOU WON" :
-               result === 0 ? "DRAW" :
-                              "YOU LOST"
+            result === 0 ? "DRAW" :
+                "YOU LOST"
     }
 
     function pickItem(item) {
-        const opponentsItem = getRandomPick()
-        pickForAi(opponentsItem)
-        const result = evaluateRound(item, opponentsItem)
-        score += result
-        scoreNumber.innerText = score
-        const resultText = result === 1 ? "YOU WON" :
-                           result === 0 ? "DRAW" :
-                                          "YOU LOST"
-        const matchResultBox = document.getElementById("match-result")
-        matchResultBox.innerHTML = resultText
-        //alert(`You picked ${item}\nOpponent picked ${opponentsItem}\n${resultText}`)
+
         animatePickTransition(item)
+
+        const opponentsItem = getRandomPick()
+        setTimeout(() => {
+            pickForAi(opponentsItem)
+        }, 1000);
+
+        setTimeout(() => {
+            const result = evaluateRound(item, opponentsItem)
+            score += result
+            scoreNumber.innerText = score
+            const resultText = result === 1 ? "YOU WON" :
+                result === 0 ? "DRAW" :
+                    "YOU LOST"
+            const matchResultBox = document.getElementById("match-result")
+            if (result > 0) {
+                document.getElementById("player-1-icon").classList.add("victory-glow")
+            }
+            else if (result < 0) {
+                document.getElementById("player-2-icon").classList.add("victory-glow")
+            }
+            matchResultBox.innerHTML = resultText
+        }, 1600);
+
+        return
+
+
+        //alert(`You picked ${item}\nOpponent picked ${opponentsItem}\n${resultText}`)
     }
 
     function pickForAi(item) {
@@ -76,11 +93,13 @@ let t
 
         pick1ElementAnimation.style.top = clickedElement.getBoundingClientRect().top + "px"
         pick1ElementAnimation.style.left = clickedElement.getBoundingClientRect().left + "px"
-        
+
         pick1Box.replaceChildren(pick1Element)
 
         resultBox.classList.add("active")
         controllButtonsBox.classList.remove("active")
+        document.getElementById("player-1-icon").classList.remove("victory-glow")
+        document.getElementById("player-2-icon").classList.remove("victory-glow")
         // setTimeout(() => {
         //     resultBox.classList.add("active")
         // }, 200)
@@ -92,6 +111,7 @@ let t
     function animateBackTransition() {
         controllButtonsBox.classList.add("active")
         resultBox.classList.remove("active")
+        document.getElementById("player-2-icon").replaceChildren()
         // setTimeout(() => {
         //     resultBox.classList.remove("active")
         // }, 200)
