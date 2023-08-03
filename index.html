@@ -16,15 +16,12 @@
 
 
 
-  You Picked
-  The House Picked
 
   You Win
   You Lose
 
-  Play Again
 
-  <script src="script.js"></script>
+
 </head>
 
 <body>
@@ -44,29 +41,29 @@
       <div class="score-text">
         Score
       </div>
-      <div class="number">
-        12
+      <div class="number" id="score-number">
+        0
       </div>
     </div>
   </div>
 
-  <div class="game-buttons-box">
-    <div class="game-button-container" id="rock">
-      <div class="game-button">
+  <div id="game-buttons-box" class="active">
+    <div class="game-button-container rock">
+      <div class="game-button" id="rock">
         <div class="game-button-inner">
           <img src="./images/icon-rock.svg" alt="rock-icon" />
         </div>
       </div>
     </div>
-    <div class="game-button-container" id="paper">
-      <div class="game-button">
+    <div class="game-button-container paper">
+      <div class="game-button" id="paper">
         <div class="game-button-inner">
           <img src="./images/icon-paper.svg" alt="rock-icon" />
         </div>
       </div>
     </div>
-    <div class="game-button-container" id="scissors">
-      <div class="game-button">
+    <div class="game-button-container scissors">
+      <div class="game-button" id="scissors">
         <div class="game-button-inner">
           <img src="./images/icon-scissors.svg" alt="rock-icon" />
         </div>
@@ -74,7 +71,27 @@
     </div>
   </div>
 
-  <div class="rules-button">
+  <div id="game-result">
+    <!-- <div id="player-1-icon-animation"></div> -->
+    <div class="player-result">
+      <h2>You Picked</h2>
+      <div id="player-1-icon"></div>
+    </div>
+    <div id="game-result-middle">
+      <div id="match-result">
+        You Lose
+      </div>
+      <div id="play-again-button">
+        Play Again
+      </div>
+    </div>
+    <div class="player-result">
+      <h2>The House Picked</h2>
+      <div id="player-2-icon"></div>
+    </div>
+  </div>
+
+  <div class="rules-button" id="rules-button">
     <div class="rules-button-inner">
       Rules
     </div>
@@ -84,6 +101,19 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Karel Klečka</a>.
   </div>
+
+  <div class="rules-modal" id="rules-modal">
+    <div class="rules-modal-inner">
+      <h2>Rules</h2>
+      <div class="close-icon" id="rules-modal-close">
+        <img src="./images/icon-close.svg" alt="close-modal">
+      </div>
+      <img src="./images/image-rules.svg" alt="game-rules" id="rules-img" />
+    </div>
+  </div>
+
+
+  <script src="./script.js"></script>
 </body>
 
 </html>
