@@ -85,39 +85,49 @@
     function pickForAi(item) {
         const pickedItemElement = document.getElementById(item).parentElement
         const clonedElement = pickedItemElement.cloneNode(true)
+        clonedElement.classList.remove("display-none")
         const aiIconBox = document.getElementById("player-2-icon")
         aiIconBox.replaceChildren(clonedElement)
     }
 
-    const resultBox = document.getElementById("game-result")
-    const controllButtonsBox = document.getElementById("game-buttons-box")
-    function animatePickTransition(pick1) {
-        const pick1Box = document.getElementById("player-1-icon")
-        const pick1BoxAnimation = document.getElementById("player-1-icon-animation")
-        const clickedElement = document.getElementById(pick1).parentElement
-        const pick1Element = clickedElement.cloneNode(true)
+    function constructMoveAnimationElement(clickedElement, pick1Element) {
         const pick1ElementAnimation = clickedElement.cloneNode(true)
+        pick1ElementAnimation.style.setProperty("--from-top", clickedElement.getBoundingClientRect().top + "px")
+        pick1ElementAnimation.style.setProperty("--to-top", pick1Element.getBoundingClientRect().top + "px")
+        pick1ElementAnimation.style.setProperty("--from-left", clickedElement.getBoundingClientRect().left + "px")
+        pick1ElementAnimation.style.setProperty("--to-left", pick1Element.getBoundingClientRect().left + "px")
+        return pick1ElementAnimation
+    }
+
+    function clickedElementMoveAnimation(pick1) {
+        const clickedElement = document.getElementById(pick1).parentElement
+        const pick1BoxAnimation = document.getElementById("player-1-icon-animation")
+        const pick1Element = clickedElement.cloneNode(true)
 
         setTimeout(() => {
-            pick1ElementAnimation.style.visibility = "visible"
-            pick1ElementAnimation.style.top = pick1Element.getBoundingClientRect().top + "px"
-            pick1ElementAnimation.style.setProperty("--from-top", clickedElement.getBoundingClientRect().top + "px")
-            pick1ElementAnimation.style.setProperty("--to-top", pick1Element.getBoundingClientRect().top + "px")
-            pick1ElementAnimation.style.left = pick1Element.getBoundingClientRect().left + "px"
-            pick1ElementAnimation.style.setProperty("--from-left", clickedElement.getBoundingClientRect().left + "px")
-            pick1ElementAnimation.style.setProperty("--to-left", pick1Element.getBoundingClientRect().left + "px")
-            pick1BoxAnimation.replaceChildren(pick1ElementAnimation)
+            pick1BoxAnimation.classList.remove("display-none")
+            pick1BoxAnimation.replaceChildren(constructMoveAnimationElement(clickedElement, pick1Element))
+            clickedElement.classList.add("display-none")
+            setTimeout(() => {
+                pick1BoxAnimation.classList.add("display-none")
+                clickedElement.classList.remove("display-none")
+            }, 1100);
         }, 200)
 
+        const pick1Box = document.getElementById("player-1-icon")
         pick1Element.style.visibility = "hidden"
         pick1Box.replaceChildren(pick1Element)
         setTimeout(() => {
             pick1Element.style.visibility = "visible"
-            setTimeout(() => {
-                pick1ElementAnimation.style.visibility = "hidden"
-            }, 300);
         }, 1000)
+    }
 
+    function animatePickTransition(pick1) {
+
+        clickedElementMoveAnimation(pick1)
+
+        const resultBox = document.getElementById("game-result")
+        const controllButtonsBox = document.getElementById("game-buttons-box")
         resultBox.classList.add("active")
         resultBox.classList.remove("display-none")
         controllButtonsBox.classList.remove("active")
@@ -125,14 +135,15 @@
             resultBox.classList.remove("display-none")
             controllButtonsBox.classList.add("display-none")
         }, 1000)
-        document.getElementById("player-1-icon").classList.remove("victory-glow")
-        document.getElementById("player-2-icon").classList.remove("victory-glow")
     }
 
     function animateBackTransition() {
         if (gameState !== "showingResults")
             return
         gameState = "transition"
+
+        const resultBox = document.getElementById("game-result")
+        const controllButtonsBox = document.getElementById("game-buttons-box")
         controllButtonsBox.classList.add("active")
         controllButtonsBox.classList.remove("display-none")
         resultBox.classList.remove("active")
@@ -140,6 +151,8 @@
         setTimeout(() => {
             controllButtonsBox.classList.remove("display-none")
             resultBox.classList.add("display-none")
+            document.getElementById("player-1-icon").classList.remove("victory-glow")
+            document.getElementById("player-2-icon").classList.remove("victory-glow")
             gameState = "awaitingChoice"
         }, 900)
     }

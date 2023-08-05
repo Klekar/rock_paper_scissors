@@ -351,12 +351,15 @@ html {
                 animation: victory-glow-appear 0.3s linear 0.23s both;
             }
 
-            &#player-2-icon>div {
+            &#player-2-icon {
                 background: radial-gradient(circle, #0003 50%, transparent 50%);
-                animation-name: player-2-icon-pop-in;
-                animation-duration: 0.4s;
-                animation-delay: 0.2s;
-                animation-fill-mode: both;
+
+                >div {
+                    animation-name: player-2-icon-pop-in;
+                    animation-duration: 0.4s;
+                    animation-delay: 0.2s;
+                    animation-fill-mode: both;
+                }
             }
         }
     }
@@ -400,6 +403,7 @@ html {
         position: absolute;
         animation: player-1-icon-transport;
         animation-duration: 0.8s;
+        animation-fill-mode: forwards;
         font-size: 1.8em;
     }
 }
@@ -508,7 +512,6 @@ html {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: #0008;
 
     top: -100vh;
     transition: top 0.4s cubic-bezier(.17, .67, .49, 1);
@@ -518,11 +521,34 @@ html {
         transition: top 0.4s cubic-bezier(.17, .67, .49, 1.5);
     }
 
+    background-color: white;
+
+    @media (min-width: @screen-breakpoint-1) {
+        background-color: #0008;
+    }
+
     .rules-modal-inner {
         background-color: white;
-        padding: 2em;
-        border-radius: 10px;
-        margin-top: -10vh;
+
+        height: min(80vh, 44em);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        @media (min-width: @screen-breakpoint-1) {
+            height: initial;
+            display: initial;
+            padding: 2em;
+            border-radius: 10px;
+            margin-top: -10vh;
+            position: relative;
+
+            .close-icon {
+                margin-top: 0.5em;
+                float: right;
+            }
+        }
 
         h2 {
             color: @dark-text;
@@ -532,8 +558,7 @@ html {
         }
 
         .close-icon {
-            float: right;
-            margin-top: 0.5em;
+            order: 3;
             cursor: pointer;
         }
 
