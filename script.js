@@ -1,6 +1,3 @@
-let t
-
-
 {   //RULES OPENING
     const rulesModal = document.getElementById("rules-modal")
 
@@ -83,9 +80,6 @@ let t
         }, 1600);
 
         return
-
-
-        //alert(`You picked ${item}\nOpponent picked ${opponentsItem}\n${resultText}`)
     }
 
     function pickForAi(item) {
