@@ -27,7 +27,17 @@
     100% {
         left: var(--to-left);
         top: var(--to-top);
-        font-size: 1.8em;
+    }
+}
+
+@keyframes game-result-middle-highen-in {
+
+    0% {
+        scale: 1 0;
+    }
+
+    100% {
+        scale: 1 1;
     }
 }
 
@@ -45,11 +55,11 @@
 @keyframes game-result-widen {
 
     0% {
-        width: 45em;
+        width: clamp(22.5em, 60vw, 45em);
     }
 
     100% {
-        width: 60em;
+        width: clamp(30em, 80vw, 60em);
     }
 }
 
@@ -146,6 +156,8 @@
 }
 
 html {
+    // height: max(526px, 100%);
+    // width: max(310px, 100%);
     height: 100%;
     width: 100%;
     margin: 0;
@@ -155,6 +167,17 @@ html {
     text-transform: uppercase;
     user-select: none;
 
+    
+    @media (max-width: 400px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 300px) {
+        font-size: 0.6em;
+    }
+    @media (max-width: 200px) {
+        font-size: 0.4em;
+    }
+
     body {
         margin: 0;
         height: 100%;
@@ -163,13 +186,14 @@ html {
 }
 
 .header-box {
+    font-size: clamp(0.6em, 1.42vw, 1.4em);
+    width: clamp(30em, 80vw, 50em);
     border: solid 3px hsl(217, 16%, 45%);
     border-radius: 14px;
     padding: 1em 1.4em 1em 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: @content-width;
     margin: auto;
 
     h1 {
@@ -279,48 +303,33 @@ html {
 
 #game-result {
     .h-center-absolute;
+    font-size: clamp(0.6em, 1.42vw, 1em);
+    width: clamp(32em, 80vw, 50em);
+    height: clamp(33em, 60vh, 60em);
     margin: auto;
-    width: 60em;
-    padding-top: 6em;
+    padding-top: 10em;
     animation-name: play-again-result-widen-out;
     animation-duration: 1s;
-    animation-fill-mode: forwards;
 
-    >.player-result {
-        animation-name: game-result-fade-in;
-        animation-duration: 1.5s;
+    @media (min-width: @screen-breakpoint-1) {
+        width: clamp(32em, 80vw, 60em);
+        padding-top: 8em;
     }
 
-    >#game-result-middle {
-        animation-name: game-result-middle-scroll-down;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-    }
 
     &>div {
         display: inline-block;
         position: absolute;
     }
 
-    &.active {
-
-        animation-name: game-result-widen;
-        animation-duration: 0.8s;
-        animation-fill-mode: both;
-        animation-delay: 2.2s;
-
-        >div {
-
-            &#game-result-middle {
-                animation-name: game-result-middle-widen-in;
-                animation-duration: 0.8s;
-                animation-fill-mode: both;
-                animation-delay: 2.2s;
-            }
-        }
-    }
-
     .player-result {
+        animation-name: game-result-fade-in;
+        animation-duration: 1.5s;
+
+        display: inline-flex;
+        position: absolute;
+        align-items: center;
+        flex-direction: column;
 
         &:nth-child(1) {
             left: 0;
@@ -334,6 +343,12 @@ html {
             letter-spacing: 0.2em;
             text-align: center;
             margin-bottom: 4em;
+            width: 12em;
+            order: 1;
+
+            @media (min-width: @screen-breakpoint-1) {
+                order: 0;
+            }
         }
 
         .picked-icon {
@@ -364,11 +379,53 @@ html {
         }
     }
 
+    >#game-result-middle {
+        animation-name: game-result-middle-scroll-down;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+
+
+    &.active {
+        animation: none;
+
+        @media (min-width: @screen-breakpoint-1) {
+            animation-name: game-result-widen;
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+            animation-delay: 2.2s;
+        }
+
+        >div {
+
+            &#game-result-middle {
+                animation-name: game-result-middle-highen-in;
+
+                animation-duration: 0.8s;
+                animation-fill-mode: both;
+                animation-delay: 2.2s;
+
+                @media (min-width: @screen-breakpoint-1) {
+                    animation-name: game-result-middle-widen-in;
+                }
+            }
+        }
+    }
+
+
     #game-result-middle {
         padding-top: 13.8em;
         left: 50%;
         position: absolute;
         translate: -50%;
+
+        bottom: 0;
+        font-size: 1.2em;
+
+        @media (min-width: @screen-breakpoint-1) {
+            bottom: unset;
+            font-size: 1em;
+        }
 
         #match-result {
             font-size: 3em;
@@ -394,6 +451,7 @@ html {
 }
 
 #player-1-icon-animation {
+    font-size: clamp(0.6em, 1.42vw, 1em);
     position: absolute;
     position: absolute;
     top: 0;
@@ -404,7 +462,12 @@ html {
         animation: player-1-icon-transport;
         animation-duration: 0.8s;
         animation-fill-mode: forwards;
-        font-size: 1.8em;
+
+        font-size: 0.8em;
+
+        @media (min-width: @screen-breakpoint-1) {
+            font-size: 1.8em;
+        }
     }
 }
 
