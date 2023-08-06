@@ -135,6 +135,21 @@
     }
 }
 
+.firefox-clip-path(@scale) {
+    clip-path: e(%("path('M 0 %a A %a %a 90 1 1 %a %a L %a %a A %a %a 90 1 1 0 %a L 0 %a')",
+                0.5 * @scale,
+                0.25 * @scale,
+                0.25 * @scale,
+                1 * @scale,
+                0.5 * @scale,
+                1 * @scale,
+                0.54 * @scale,
+                0.25 * @scale,
+                0.25 * @scale,
+                0.54 * @scale,
+                0.5 * @scale ));
+}
+
 * {
     box-sizing: border-box;
 }
@@ -167,13 +182,15 @@ html {
     text-transform: uppercase;
     user-select: none;
 
-    
+
     @media (max-width: 400px) {
         font-size: 0.8em;
     }
+
     @media (max-width: 300px) {
         font-size: 0.6em;
     }
+
     @media (max-width: 200px) {
         font-size: 0.4em;
     }
@@ -376,6 +393,12 @@ html {
                     animation-fill-mode: both;
                 }
             }
+
+            @-moz-document url-prefix() {
+                .game-button-container {
+                    clip-path: unset;
+                }
+            }
         }
     }
 
@@ -465,6 +488,10 @@ html {
 
         font-size: 0.8em;
 
+        @-moz-document url-prefix() {
+            clip-path: unset;
+        }
+
         @media (min-width: @screen-breakpoint-1) {
             font-size: 1.8em;
         }
@@ -475,7 +502,16 @@ html {
     width: 10em;
     height: 10em;
     clip-path: url("#hole-cut");
+
     background-image: radial-gradient(circle at 50% 53%, hsla(0, 0%, 0%, 0.5) 69%, #0000 69%);
+
+    @-moz-document url-prefix() {
+        .firefox-clip-path(128);
+
+        @media (min-width: @screen-breakpoint-1) {
+            .firefox-clip-path(192);
+        }
+    }
 
 
     &.rock .game-button {
