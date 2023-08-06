@@ -115,16 +115,6 @@
     }
 }
 
-@keyframes game-result-middle-scroll-down {
-    0% {
-        margin-top: 0;
-    }
-
-    100% {
-        margin-top: 100vh;
-    }
-}
-
 @keyframes game-buttons-box-drop-in {
     0% {
         margin-top: -100vh;
@@ -402,47 +392,21 @@ html {
         }
     }
 
-    >#game-result-middle {
-        animation-name: game-result-middle-scroll-down;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-    }
-
-
-    &.active {
-        animation: none;
+    #game-result-middle {
+        bottom: -100vh;
+        transition: bottom 1s;
 
         @media (min-width: @screen-breakpoint-1) {
-            animation-name: game-result-widen;
-            animation-duration: 0.8s;
-            animation-fill-mode: both;
-            animation-delay: 2.2s;
+            bottom: unset;
+            margin-top: 100vh;
+            transition: margin-top 1s;
         }
 
-        >div {
-
-            &#game-result-middle {
-                animation-name: game-result-middle-highen-in;
-
-                animation-duration: 0.8s;
-                animation-fill-mode: both;
-                animation-delay: 2.2s;
-
-                @media (min-width: @screen-breakpoint-1) {
-                    animation-name: game-result-middle-widen-in;
-                }
-            }
-        }
-    }
-
-
-    #game-result-middle {
         padding-top: 13.8em;
         left: 50%;
         position: absolute;
         translate: -50%;
 
-        bottom: 0;
         font-size: 1.2em;
 
         @media (min-width: @screen-breakpoint-1) {
@@ -468,6 +432,35 @@ html {
 
             &:hover {
                 color: #cc0000;
+            }
+        }
+    }
+
+
+    &.active {
+        animation: none;
+
+        @media (min-width: @screen-breakpoint-1) {
+            animation-name: game-result-widen;
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+            animation-delay: 2.2s;
+        }
+
+        >div {
+
+            &#game-result-middle {
+                bottom: 0;
+                animation-name: game-result-middle-highen-in;
+
+                animation-duration: 0.8s;
+                animation-fill-mode: both;
+                animation-delay: 2.2s;
+
+                @media (min-width: @screen-breakpoint-1) {
+                    margin-top: 0;
+                    animation-name: game-result-middle-widen-in;
+                }
             }
         }
     }
