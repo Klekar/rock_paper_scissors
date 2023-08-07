@@ -7,7 +7,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 
-  <link rel="stylesheet/less" type="text/css" href="styles.less" crossorigin="anonymous">
+  <link rel="stylesheet/less" href="styles.less" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/less"></script>
 
 
@@ -23,7 +23,7 @@
     </defs>
   </svg>
 
-  <div class="header-box">
+  <header class="header-box">
     <h1>Rock Paper Scissors</h1>
     <div class="score-box">
       <div class="score-text">
@@ -33,62 +33,66 @@
         0
       </div>
     </div>
-  </div>
+  </header>
 
-  <div id="game-buttons-box" class="active">
-    <div class="game-button-container rock">
-      <div class="game-button" id="rock">
-        <div class="game-button-inner">
-          <img src="./images/icon-rock.svg" alt="rock-icon">
+  <main>
+
+    <div id="game-buttons-box" class="active">
+      <div class="game-button-container rock">
+        <div class="game-button" id="rock">
+          <div class="game-button-inner">
+            <img src="./images/icon-rock.svg" alt="rock-icon">
+          </div>
+        </div>
+      </div>
+      <div class="game-button-container paper">
+        <div class="game-button" id="paper">
+          <div class="game-button-inner">
+            <img src="./images/icon-paper.svg" alt="paper-icon">
+          </div>
+        </div>
+      </div>
+      <div class="game-button-container scissors">
+        <div class="game-button" id="scissors">
+          <div class="game-button-inner">
+            <img src="./images/icon-scissors.svg" alt="scissors-icon">
+          </div>
         </div>
       </div>
     </div>
-    <div class="game-button-container paper">
-      <div class="game-button" id="paper">
-        <div class="game-button-inner">
-          <img src="./images/icon-paper.svg" alt="paper-icon">
+
+    <div id="player-1-icon-animation" class="display-none"></div>
+    <div id="game-result" class="display-none">
+      <div class="player-result">
+        <h2>You Picked</h2>
+        <div id="player-1-icon" class="picked-icon"></div>
+      </div>
+      <div class="player-result">
+        <h2>The House Picked</h2>
+        <div id="player-2-icon" class="picked-icon"></div>
+      </div>
+      <div id="game-result-middle">
+        <div id="match-result">
+          You Lose
+        </div>
+        <div id="play-again-button">
+          Play Again
         </div>
       </div>
     </div>
-    <div class="game-button-container scissors">
-      <div class="game-button" id="scissors">
-        <div class="game-button-inner">
-          <img src="./images/icon-scissors.svg" alt="scissors-icon">
-        </div>
+
+    <div class="rules-button" id="rules-button">
+      <div class="rules-button-inner">
+        Rules
       </div>
     </div>
-  </div>
 
-  <div id="player-1-icon-animation" class="display-none"></div>
-  <div id="game-result" class="display-none">
-    <div class="player-result">
-      <h2>You Picked</h2>
-      <div id="player-1-icon" class="picked-icon"></div>
-    </div>
-    <div class="player-result">
-      <h2>The House Picked</h2>
-      <div id="player-2-icon" class="picked-icon"></div>
-    </div>
-    <div id="game-result-middle">
-      <div id="match-result">
-        You Lose
-      </div>
-      <div id="play-again-button">
-        Play Again
-      </div>
-    </div>
-  </div>
+  </main>
 
-  <div class="rules-button" id="rules-button">
-    <div class="rules-button-inner">
-      Rules
-    </div>
-  </div>
-
-  <div class="attribution">
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="https://www.frontendmentor.io/profile/Klekar">Karel Klečka</a>.
-  </div>
+  </footer>
 
   <div class="rules-modal" id="rules-modal">
     <div class="rules-modal-inner">
