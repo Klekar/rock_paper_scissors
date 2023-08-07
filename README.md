@@ -25,8 +25,8 @@ Users should be able to:
 
 - View the optimal layout for the game depending on their device's screen size
 - Play Rock, Paper, Scissors against the computer
-- Maintain the state of the score after refreshing the browser _(optional)_
-- **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional)_
+- Maintain the state of the score after refreshing the browser _(optional - not implemented)_
+- **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional - not implemented)_
 
 ### Screenshot
 
@@ -34,7 +34,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/rock-parep-scissors-with-animations-using-basic-html-js-csswith-less-kBA05_rEYP](https://www.frontendmentor.io/solutions/rock-parep-scissors-with-animations-using-basic-html-js-csswith-less-kBA05_rEYP)
 - Live Site URL: [https://rock-paper-scissors-klekar.vercel.app](https://rock-paper-scissors-klekar.vercel.app)
 
 ## My process
