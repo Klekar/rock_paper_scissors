@@ -144,7 +144,6 @@ window.isMobileOrTablet = function () {
     }
 
     function animateBackTransition() {
-        console.log("anibackcalled");
         if (gameState !== "showingResults")
             return
         gameState = "transition"
