@@ -241,7 +241,7 @@ html {
 
 #game-buttons-box {
     .h-center-absolute;
-    font-size: 1.2em;
+    font-size: 0.8em;
     background-image: url(./images/bg-triangle.svg);
     background-repeat: no-repeat;
     background-size: 20em;
@@ -264,8 +264,8 @@ html {
     }
 
 
-    @media (max-width: @screen-breakpoint-1) {
-        font-size: 0.8em;
+    @media (min-width: @screen-breakpoint-1) {
+        font-size: 1.2em;
     }
 
     .game-button-container {
@@ -362,11 +362,11 @@ html {
             position: relative;
             aspect-ratio: 1;
             width: 10em;
-            font-size: 1.8em;
+            font-size: 0.8em;
             border-radius: 50%;
 
-            @media (max-width: @screen-breakpoint-1) {
-                font-size: 0.8em;
+            @media (min-width: @screen-breakpoint-1) {
+                font-size: 1.8em;
             }
 
             &.victory-glow {
@@ -567,9 +567,14 @@ html {
     cursor: pointer;
     width: 11em;
 
-    @media (max-width: @screen-breakpoint-1) {
-        left: 50%;
-        transform: translateX(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (min-width: @screen-breakpoint-1) {
+        right: 2em;
+        bottom: 2em;
+        left: unset;
+        transform: unset;
     }
 
     .rules-button-inner {
