@@ -47,6 +47,38 @@ Users should be able to:
 
 ### What I learned
 
+I've learned that for good performance of CSS animations I cannot use properties that change layout of elements. For example instead of this:
+````css
+@keyframes game-result-widen {
+
+    0% {
+        width: clamp(22.5em, 60vw, 45em);
+    }
+
+    100% {
+        width: clamp(30em, 80vw, 60em);
+    }
+}
+````
+I changed to this:
+````css
+@keyframes game-result-left-move-in {
+    0% {
+        transform: translateX(50%);
+    }
+
+    100% {}
+}
+
+@keyframes game-result-right-move-in {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {}
+}
+````
+
 I used clip-path CSS property to create press-in button animation with inline SVG to make it scaleable.
 
 ````xml
@@ -80,8 +112,8 @@ Sadly, Firefox had some issue with animating children of element which is clippe
 
 ### Continued development
 
-If I become aware of any bugs I will probably fix them but otherwise I won't most likely develop this app any further since the bonus version seems pretty much the same.
-
+App doesn't seem to be doing very well on mobile phones. Specifically mobile Safari appears to be just doing some wierd stuff and Samsung Internet ruined color gradient of rock paper scissors buttons. That is something I would like to look into in the future.
+If I become aware of any further bugs I might fix them but otherwise I won't most likely develop this app any further since the bonus version is pretty much the same regarding coding.
 
 ### Useful resources
 
