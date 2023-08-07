@@ -147,12 +147,12 @@
         controllButtonsBox.classList.add("active")
         controllButtonsBox.classList.remove("display-none")
         resultBox.classList.remove("active")
-        document.getElementById("player-2-icon").replaceChildren()
         setTimeout(() => {
             controllButtonsBox.classList.remove("display-none")
             resultBox.classList.add("display-none")
             document.getElementById("player-1-icon").classList.remove("victory-glow")
             document.getElementById("player-2-icon").classList.remove("victory-glow")
+            document.getElementById("player-2-icon").replaceChildren()
             gameState = "awaitingChoice"
         }, 900)
     }
