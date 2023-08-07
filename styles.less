@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800;900&display=swap');
 
-@content-width: clamp(400px, 70vw, 800px);
 @screen-breakpoint-1: 1024px;
 @dark-text: hsl(229, 25%, 31%);
 @score-text: hsl(229, 64%, 46%);
-@bounce-bezier: cubic-bezier(.17, .67, .49, 2.6);
 
-@keyframes game-result-fade-in {
+@keyframes fade-in {
     0% {
-        display: inline-block;
         opacity: 0;
     }
 
@@ -52,17 +49,6 @@
     }
 }
 
-@keyframes game-result-widen {
-
-    0% {
-        width: clamp(22.5em, 60vw, 45em);
-    }
-
-    100% {
-        width: clamp(30em, 80vw, 60em);
-    }
-}
-
 @keyframes player-2-icon-pop-in {
     0% {
         scale: 0;
@@ -102,12 +88,36 @@
     }
 }
 
+@keyframes game-result-left-move-in {
+    0% {
+        transform: translateX(50%);
+    }
 
-@keyframes play-again-result-widen-out {
+    100% {}
+}
+
+@keyframes game-result-right-move-in {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {}
+}
+
+
+@keyframes game-result-left-move-out {
     0% {}
 
     100% {
-        width: 200vw;
+        transform: translateX(-100vh);
+    }
+}
+
+@keyframes game-result-right-move-out {
+    0% {}
+
+    100% {
+        transform: translateX(100vh);
     }
 }
 
@@ -303,14 +313,14 @@ html {
 
         .game-button {
             cursor: pointer;
-            transition: box-shadow 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
             &:hover {
-                margin-top: 0.2em;
+                transform: translateY(0.2em);
             }
 
             &:active {
-                margin-top: 0.6em;
+                transform: translateY(0.6em);
 
                 &::before {
                     transition: box-shadow 0.1s linear 0.1s;
@@ -330,8 +340,6 @@ html {
     height: clamp(33em, 60vh, 60em);
     margin: auto;
     padding-top: 10em;
-    animation-name: play-again-result-widen-out;
-    animation-duration: 1s;
 
     @media (min-width: @screen-breakpoint-1) {
         width: clamp(32em, 80vw, 60em);
@@ -345,8 +353,8 @@ html {
     }
 
     .player-result {
-        animation-name: game-result-fade-in;
-        animation-duration: 1.5s;
+        opacity: 0;
+        transition: opacity 0s 2s;
 
         display: inline-flex;
         position: absolute;
@@ -355,10 +363,16 @@ html {
 
         &:nth-child(1) {
             left: 0;
+            animation-name: game-result-left-move-out;
+            animation-duration: 1s;
+            animation-fill-mode: backwards;
         }
 
         &:nth-child(2) {
             right: 0;
+            animation-name: game-result-right-move-out;
+            animation-duration: 1s;
+            animation-fill-mode: backwards;
         }
 
         h2 {
@@ -447,13 +461,24 @@ html {
 
 
     &.active {
-        animation: none;
+        animation-name: fade-in;
+        animation-duration: 1s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
 
-        @media (min-width: @screen-breakpoint-1) {
-            animation-name: game-result-widen;
-            animation-duration: 0.8s;
-            animation-fill-mode: both;
-            animation-delay: 2.2s;
+        .player-result {
+            transition: opacity 1s 0.2s;
+            opacity: 1;
+
+            &:nth-child(1) {
+                left: 0;
+                animation-name: none;
+            }
+
+            &:nth-child(2) {
+                right: 0;
+                animation-name: none;
+            }
         }
 
         #game-result-middle {
@@ -465,6 +490,27 @@ html {
 
             @media (min-width: @screen-breakpoint-1) {
                 animation-name: game-result-middle-widen-in;
+            }
+        }
+
+        @media (min-width: @screen-breakpoint-1) {
+            width: clamp(30em, 80vw, 60em);
+
+            .player-result {
+
+                &:nth-child(1) {
+                    left: 0;
+                    animation-name: game-result-left-move-in;
+                    animation-duration: 0.8s;
+                    animation-delay: 2.2s;
+                }
+
+                &:nth-child(2) {
+                    right: 0;
+                    animation-name: game-result-right-move-in;
+                    animation-duration: 0.8s;
+                    animation-delay: 2.2s;
+                }
             }
         }
     }
@@ -614,12 +660,13 @@ html {
     height: 100vh;
 
     overflow: hidden;
-    top: -100vh;
-    transition: top 0.4s cubic-bezier(.17, .67, .49, 1);
+    top: 0;
+    transform: translateY(-100vh);
+    transition: transform 0.4s cubic-bezier(.17, .67, .49, 1);
 
     &.open {
-        top: 0;
-        transition: top 0.4s cubic-bezier(.17, .67, .49, 1.5);
+        transform: translateY(0);
+        transition: transform 0.4s cubic-bezier(.17, .67, .49, 1.5);
     }
 
     background-color: white;
